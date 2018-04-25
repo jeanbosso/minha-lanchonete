@@ -1,18 +1,18 @@
 package br.com.minhalanchonete.database;
 
 import br.com.minhalanchonete.model.Ingrediente;
+import br.com.minhalanchonete.model.Lanche;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
-import java.util.List;
 
 @Scope(value = "singleton")
 @Component
 public class Database {
 
     private HashMap<String, Ingrediente> ingredientes;
-    private HashMap<String, List<Ingrediente>> lanches;
+    private HashMap<String, Lanche> lanches;
 
 
     public HashMap<String, Ingrediente> getIngredientes() {
@@ -23,11 +23,11 @@ public class Database {
         this.ingredientes = ingredientes;
     }
 
-    public HashMap<String, List<Ingrediente>> getLanches() {
+    public HashMap<String, Lanche> getLanches() {
         return lanches;
     }
 
-    public void setLanches(HashMap<String, List<Ingrediente>> lanches) {
+    public void setLanches(HashMap<String, Lanche> lanches) {
         this.lanches = lanches;
     }
 }
