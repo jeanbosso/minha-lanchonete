@@ -47,7 +47,7 @@ public class IngredienteRepository {
         return database.getIngredientes().get(ingredienteKey);
     }
 
-    public Collection<Ingrediente> getAllIngredientes(String ingredienteKey) throws DataNotExistsException {
+    public Collection<Ingrediente> getAllIngredientes() throws DataNotExistsException {
         return database.getIngredientes().values();
     }
 
