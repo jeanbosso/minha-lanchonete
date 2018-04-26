@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Service("ingredienteService")
+@Service("lancheService")
 public class LancheService {
 
     private final LancheRepository lancheRepository;

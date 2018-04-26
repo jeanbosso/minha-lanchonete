@@ -2,6 +2,7 @@ package br.com.minhalanchonete.database;
 
 import br.com.minhalanchonete.model.Ingrediente;
 import br.com.minhalanchonete.model.Lanche;
+import br.com.minhalanchonete.model.Pedido;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,15 @@ public class Database {
 
     private HashMap<String, Ingrediente> ingredientes;
     private HashMap<String, Lanche> lanches;
+    private HashMap<Long, Pedido> pedidos;
 
+    public HashMap<Long, Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(HashMap<Long, Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
 
     public HashMap<String, Ingrediente> getIngredientes() {
         return ingredientes;
