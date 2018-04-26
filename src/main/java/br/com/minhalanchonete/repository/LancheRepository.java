@@ -46,7 +46,7 @@ public class LancheRepository {
         return database.getLanches().get(lancheKey);
     }
 
-    public Collection<Lanche> getAllLanches(String lancheKey) throws DataNotExistsException {
+    public Collection<Lanche> getAllLanches() throws DataNotExistsException {
         return database.getLanches().values();
     }
 

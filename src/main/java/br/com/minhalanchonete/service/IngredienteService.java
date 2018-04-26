@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service("ingredienteService")
@@ -66,19 +67,22 @@ public class IngredienteService {
 
     public List<IngredienteDto> getAllIngredientes() {
 
-        IngredienteDto ingredienteDto = new IngredienteDto();
+        List<IngredienteDto> ingredientesDto = new ArrayList<>();
         try {
             List<Ingrediente> ingredientes = new ArrayList<>(ingredienteRepository.getAllIngredientes());
-
-            ingredienteDto.setNome(ingrediente.getNome());
-            ingredienteDto.setValor(ingrediente.getValor());
+            IngredienteDto ingredienteDto;
+            for (Ingrediente ingrediente : ingredientes) {
+                ingredienteDto = new IngredienteDto();
+                ingredienteDto.setNome(ingrediente.getNome());
+                ingredienteDto.setValor(ingrediente.getValor());
+                ingredientesDto.add(ingredienteDto);
+            }
 
         } catch (DataNotExistsException e) {
-            ingredienteDto.setHasError(Boolean.TRUE);
-            ingredienteDto.setMessage(e.getMessage());
+            ingredientesDto = Arrays.asList();
         }
 
-        return ingredienteDto;
+        return ingredientesDto;
     }
 
 

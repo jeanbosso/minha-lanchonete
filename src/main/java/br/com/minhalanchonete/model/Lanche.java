@@ -7,6 +7,14 @@ public class Lanche {
     private String nome;
     private List<Ingrediente> ingredientes;
 
+    public List<Ingrediente> getIngredientes() {
+        return ingredientes;
+    }
+
+    public void setIngredientes(List<Ingrediente> ingredientes) {
+        this.ingredientes = ingredientes;
+    }
+
     public String getNome() {
         return nome;
     }
