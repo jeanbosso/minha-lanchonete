@@ -22,7 +22,7 @@ public class PedidoService {
         this.pedidoRepository = pedidoRepository;
     }
 
-    public PedidoDto insertLanche(Pedido pedido) {
+    public PedidoDto insertPedido(Pedido pedido) {
 
         PedidoDto pedidoDto = new PedidoDto();
         try {

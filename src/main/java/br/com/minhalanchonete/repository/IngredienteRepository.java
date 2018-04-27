@@ -51,5 +51,4 @@ public class IngredienteRepository {
         return database.getIngredientes().values();
     }
 
-
 }

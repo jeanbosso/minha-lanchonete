@@ -9,12 +9,19 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 
 @Scope(value = "singleton")
-@Component
+@Component("database")
 public class Database {
 
     private HashMap<String, Ingrediente> ingredientes;
     private HashMap<String, Lanche> lanches;
     private HashMap<Long, Pedido> pedidos;
+
+    public Database(){
+        this.ingredientes = new HashMap<>();
+        this.lanches = new HashMap<>();
+        this.pedidos = new HashMap<>();
+    }
+
 
     public HashMap<Long, Pedido> getPedidos() {
         return pedidos;
