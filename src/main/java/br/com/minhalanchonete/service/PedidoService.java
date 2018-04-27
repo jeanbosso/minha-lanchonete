@@ -117,4 +117,10 @@ public class PedidoService {
     }
 
 
+    public Boolean verificarPromocao(Pedido pedido) {
+
+        return Boolean.FALSE;
+    }
+
+
 }
