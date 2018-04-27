@@ -3,11 +3,14 @@ package br.com.minhalanchonete.service;
 import br.com.minhalanchonete.dto.PedidoDto;
 import br.com.minhalanchonete.exception.DataAlreadyExistsException;
 import br.com.minhalanchonete.exception.DataNotExistsException;
+import br.com.minhalanchonete.model.Lanche;
 import br.com.minhalanchonete.model.Pedido;
 import br.com.minhalanchonete.repository.PedidoRepository;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,9 +21,12 @@ public class PedidoService {
     private final PedidoRepository pedidoRepository;
 
     @Autowired
-    public PedidoService(PedidoRepository pedidoRepository) {
+    private PedidoService(PedidoRepository pedidoRepository) {
         this.pedidoRepository = pedidoRepository;
     }
+
+    @Autowired
+    private LancheService lancheService;
 
     public PedidoDto insertPedido(Pedido pedido) {
 
@@ -87,6 +93,27 @@ public class PedidoService {
         }
 
         return pedidoDtos;
+    }
+
+    public PedidoDto calculaValorTotal(Pedido pedido) {
+        PedidoDto pedidoDto = new PedidoDto();
+
+        if (CollectionUtils.isEmpty(pedido.getLanches())) {
+            pedidoDto.setHasError(Boolean.TRUE);
+            pedidoDto.setMessage("O Pedido não contem Lanches.");
+        }
+        BigDecimal valorTotal = BigDecimal.ZERO;
+
+        for (Lanche lanche : pedido.getLanches()) {
+            valorTotal.add(lancheService.calculaValorLanche(lanche));
+        }
+
+        pedidoDto.setValorTotal(valorTotal);
+        pedidoDto.setSolicitante(pedido.getSolicitante());
+        pedidoDto.setLanches(pedido.getLanches());
+        pedidoDto.setIdentificador(pedido.getIdentificador());
+
+        return pedidoDto;
     }
 
 

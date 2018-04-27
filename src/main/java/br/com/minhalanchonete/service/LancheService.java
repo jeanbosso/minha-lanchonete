@@ -3,11 +3,13 @@ package br.com.minhalanchonete.service;
 import br.com.minhalanchonete.dto.LancheDto;
 import br.com.minhalanchonete.exception.DataAlreadyExistsException;
 import br.com.minhalanchonete.exception.DataNotExistsException;
+import br.com.minhalanchonete.model.Ingrediente;
 import br.com.minhalanchonete.model.Lanche;
 import br.com.minhalanchonete.repository.LancheRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -83,6 +85,16 @@ public class LancheService {
         }
 
         return lancheDtos;
+    }
+
+    public BigDecimal calculaValorLanche(Lanche lanche) {
+        BigDecimal valorLanche = BigDecimal.ZERO;
+
+        for (Ingrediente ingrediente : lanche.getIngredientes()) {
+            valorLanche.add(ingrediente.getValor());
+        }
+
+        return valorLanche;
     }
 
 

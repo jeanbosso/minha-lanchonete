@@ -1,10 +1,7 @@
 package br.com.minhalanchonete.controller;
 
-import br.com.minhalanchonete.dto.LancheDto;
 import br.com.minhalanchonete.dto.PedidoDto;
-import br.com.minhalanchonete.model.Lanche;
 import br.com.minhalanchonete.model.Pedido;
-import br.com.minhalanchonete.service.LancheService;
 import br.com.minhalanchonete.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +32,11 @@ public class PedidoController {
     @PutMapping("/updatePedido")
     public PedidoDto updatePedido(@RequestBody Pedido pedido) {
         return pedidoService.updatePedido(pedido);
+    }
+
+    @PostMapping("/calculaValorPedido")
+    public PedidoDto calculaValorTotal(@RequestBody Pedido pedido) {
+        return pedidoService.calculaValorTotal(pedido);
     }
 
 }
